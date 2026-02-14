@@ -19,3 +19,5 @@ env/
 
 # Static files
 staticfiles/
+
+.claude/
