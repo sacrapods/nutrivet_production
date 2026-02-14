@@ -1,0 +1,1 @@
+web: gunicorn nutrivet_project.wsgi

@@ -25,18 +25,19 @@ def intake_form_view(request):
         )
 
         # ── Pet ──
+        pet_weight = request.POST.get('pet_weight', '')
         pet = Pet.objects.create(
             owner=pet_parent,
-            name=request.POST.get('pet_name'),
-            dob_age=request.POST.get('pet_age'),
-            species=request.POST.get('pet_species'),
-            breed=request.POST.get('pet_breed'),
+            name=request.POST.get('pet_name', ''),
+            dob_age=request.POST.get('pet_age', ''),
+            species=request.POST.get('pet_species', 'dog'),
+            breed=request.POST.get('pet_breed', ''),
             colour=request.POST.get('pet_colour', ''),
-            sex=request.POST.get('pet_sex'),
+            sex=request.POST.get('pet_sex', 'male'),
             neutered=request.POST.get('pet_neutered') == 'yes',
-            current_weight_kg=request.POST.get('pet_weight'),
-            body_condition=request.POST.get('pet_body_condition'),
-            consultation_goals=request.POST.get('pet_consultation_goals')
+            current_weight_kg=pet_weight if pet_weight else None,
+            body_condition=request.POST.get('pet_body_condition', 'ideal'),
+            consultation_goals=request.POST.get('pet_consultation_goals', '')
         )
 
         # ── Household Details ──
